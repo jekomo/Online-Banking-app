@@ -1,0 +1,69 @@
+﻿<!-- start header -->
+@if (Request.IsAuthenticated)
+{
+    	<!-- start header -->
+	<header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><span>ABC</span>BANK</a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Open Account","NewCustomer","Home")</li>
+                          <li>@Html.ActionLink("Check Balance","CheckBalance","Home")</li>
+                       <li> @Html.ActionLink("Transaction","NewTransaction","Home")</li>
+                  @*      <li class="dropdown">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Transaction <b class=" icon-angle-down"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Deposit","Deposit","Home")</li>
+                                 <li>@Html.ActionLink("WithDrawals","Withdraw","Home")</li>
+                           
+                            </ul>
+                        </li>*@
+                            <li class="dropdown">
+                            <a href="" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Welcome @Html.Encode(User.Identity.Name) <b class=" icon-angle-down"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Sign out","signOut","Account")</li>          
+                            </ul>
+                        </li>
+                   
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</header>
+	<!-- end header -->
+}
+else
+{
+	<header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><span>ABC </span>BANK</a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home","index","Home")</li>
+               
+                        <li>@Html.ActionLink("Login","Login","Account")</li>
+                      
+                        <li>@Html.ActionLink("Register","Registration","Account")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</header>
+}
+	<!-- end header -->

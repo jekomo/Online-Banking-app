@@ -1,0 +1,124 @@
+﻿@model ABCBankApps.Models.CustomersAcct
+
+@{
+    ViewBag.Title = "Edit";
+}
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+   
+<h4>Edit Customer's details with account number @Model.iAcNo</h4>
+
+@using (Html.BeginForm("Edit", "Home",new{id=Model.iAcNo},FormMethod.Post, new { role="form"}))
+{
+   
+         @Html.ValidationSummary()
+                    
+      
+      <div class="col-md-6">
+<div class="form-group">
+    @Html.TextBoxFor(model=>model.iAcNo,
+    new 
+    {
+        placeholder ="* Enter Account Number",
+        @class="form-control input-md",
+        required="required",
+        type="text"
+        
+    }
+    
+    )
+</div>
+             <div class="form-group">
+    @Html.TextBoxFor(model=>model.vCusName,
+    new 
+    {
+        placeholder ="* Enter First name",
+        @class="form-control input-md",
+        required="required",
+        type="text"
+        
+    }
+    
+    )
+</div>
+          <div class="form-group">
+    @Html.TextBoxFor(model=>model.vCusSurName,
+    new 
+    {
+        placeholder ="* Enter Lastname",
+        @class="form-control input-md",
+        required="required",
+        type="text"
+        
+    }
+    
+    )
+</div>
+                   <div class="form-group">
+    @Html.DropDownListFor(model => model.cSex,
+    new SelectList(new[] { "Male", "Female" }), new { 
+       @class="form-control input-md",
+    }
+    )
+</div>
+            <div class="form-group">
+        
+            @Html.HiddenFor(model => model.dDate,
+            new{
+            
+                @class ="form-control input-md",
+                type="hidden",   
+                
+            }
+            )
+        </div>
+       <div class="form-group">
+        
+            @Html.TextAreaFor(model => model.vAddress,
+            new{
+               placeholder="* Enter Home Address",
+                @class ="form-control input-md",
+                required="required",
+                type="text"
+                
+            }
+            )
+        </div>
+            <div class="form-group">
+        
+            @Html.TextBoxFor(model => model.mBal,
+            new{
+               placeholder="0.00",
+                @class ="form-control input-md",
+                required="required",
+                type="number",   
+                
+            }
+            )
+        </div>
+          <div class="form-group">
+        
+            @Html.TextBoxFor(model => model.staffid,
+            new{
+               placeholder="* Enter Account Offier Id",
+                @class ="form-control input-md",
+                required="required",
+                type="text",   
+                
+            }
+            )
+        </div>
+          <button class="btn btn-lg btn-theme" type="submit">Submit</button>
+     <button class="btn btn-lg btn-theme" type="reset">Reset</button>
+            </div>
+}
+       
+        </div>
+
+    </div>
+        </div>
+</section>
+

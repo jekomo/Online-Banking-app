@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ABCBankModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ABCBankModelStoreContainer">
+    <EntitySet Name="AccountUsers" EntityType="ABCBankModel.Store.AccountUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomersAcct" EntityType="ABCBankModel.Store.CustomersAcct" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Deposits" EntityType="ABCBankModel.Store.Deposits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StaffDetails" EntityType="ABCBankModel.Store.StaffDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="ABCBankModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Withdrawls" EntityType="ABCBankModel.Store.Withdrawls" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fkiAcNo" Association="ABCBankModel.Store.fkiAcNo">
+      <End Role="CustomersAcct" EntitySet="CustomersAcct" />
+      <End Role="Withdrawls" EntitySet="Withdrawls" />
+    </AssociationSet>
+    <AssociationSet Name="fkiAcNo1" Association="ABCBankModel.Store.fkiAcNo1">
+      <End Role="CustomersAcct" EntitySet="CustomersAcct" />
+      <End Role="Deposits" EntitySet="Deposits" />
+    </AssociationSet>
+    <AssociationSet Name="fkidNo" Association="ABCBankModel.Store.fkidNo">
+      <End Role="StaffDetails" EntitySet="StaffDetails" />
+      <End Role="CustomersAcct" EntitySet="CustomersAcct" />
+    </AssociationSet>
+    <AssociationSet Name="fkTranIacno" Association="ABCBankModel.Store.fkTranIacno">
+      <End Role="CustomersAcct" EntitySet="CustomersAcct" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AccountUsers">
+    <Key>
+      <PropertyRef Name="nEmail" />
+    </Key>
+    <Property Name="cAuLd" Type="char" MaxLength="200" />
+    <Property Name="nEmail" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="nPassword" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="nPasswordSalt" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="CustomersAcct">
+    <Key>
+      <PropertyRef Name="iAcNo" />
+    </Key>
+    <Property Name="iAcNo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="vCusName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="vCusSurName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="cSex" Type="char" MaxLength="7" />
+    <Property Name="vAddress" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="dDate" Type="datetime" />
+    <Property Name="mBal" Type="money" Nullable="false" />
+    <Property Name="staffid" Type="char" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="Deposits">
+    <Key>
+      <PropertyRef Name="SlipNo" />
+    </Key>
+    <Property Name="SlipNo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="iAcNo" Type="int" />
+    <Property Name="AmtDep" Type="money" Nullable="false" />
+    <Property Name="Amtinwords" Type="char" MaxLength="35" />
+    <Property Name="DateOfDep" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StaffDetails">
+    <Key>
+      <PropertyRef Name="staffId" />
+    </Key>
+    <Property Name="staffId" Type="char" Nullable="false" MaxLength="4" />
+    <Property Name="staffName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="staffLastName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="cPhoneNo" Type="char" Nullable="false" MaxLength="16" />
+    <Property Name="iAge" Type="int" />
+    <Property Name="cSex" Type="char" Nullable="false" MaxLength="7" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="TansId" />
+    </Key>
+    <Property Name="TansId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="iacno" Type="int" Nullable="false" />
+    <Property Name="amount" Type="money" Nullable="false" />
+    <Property Name="AmtInWords" Type="char" MaxLength="35" />
+    <Property Name="TransType" Type="varchar" MaxLength="15" />
+    <Property Name="TransDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Withdrawls">
+    <Key>
+      <PropertyRef Name="SlipNo" />
+    </Key>
+    <Property Name="SlipNo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="iAcNo" Type="int" />
+    <Property Name="Amtwithdraw" Type="money" Nullable="false" />
+    <Property Name="Amtinwords" Type="char" MaxLength="35" />
+    <Property Name="DateOfWith" Type="datetime" />
+  </EntityType>
+  <Association Name="fkiAcNo">
+    <End Role="CustomersAcct" Type="ABCBankModel.Store.CustomersAcct" Multiplicity="0..1" />
+    <End Role="Withdrawls" Type="ABCBankModel.Store.Withdrawls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomersAcct">
+        <PropertyRef Name="iAcNo" />
+      </Principal>
+      <Dependent Role="Withdrawls">
+        <PropertyRef Name="iAcNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fkiAcNo1">
+    <End Role="CustomersAcct" Type="ABCBankModel.Store.CustomersAcct" Multiplicity="0..1" />
+    <End Role="Deposits" Type="ABCBankModel.Store.Deposits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomersAcct">
+        <PropertyRef Name="iAcNo" />
+      </Principal>
+      <Dependent Role="Deposits">
+        <PropertyRef Name="iAcNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fkidNo">
+    <End Role="StaffDetails" Type="ABCBankModel.Store.StaffDetails" Multiplicity="0..1" />
+    <End Role="CustomersAcct" Type="ABCBankModel.Store.CustomersAcct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StaffDetails">
+        <PropertyRef Name="staffId" />
+      </Principal>
+      <Dependent Role="CustomersAcct">
+        <PropertyRef Name="staffid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fkTranIacno">
+    <End Role="CustomersAcct" Type="ABCBankModel.Store.CustomersAcct" Multiplicity="1" />
+    <End Role="Transactions" Type="ABCBankModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomersAcct">
+        <PropertyRef Name="iAcNo" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="iacno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

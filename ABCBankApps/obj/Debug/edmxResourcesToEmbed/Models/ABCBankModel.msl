@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ABCBankModelStoreContainer" CdmEntityContainer="ABCBank">
+    <EntitySetMapping Name="AccountUsers">
+      <EntityTypeMapping TypeName="ABCBankModel.AccountUser">
+        <MappingFragment StoreEntitySet="AccountUsers">
+          <ScalarProperty Name="cAuLd" ColumnName="cAuLd" />
+          <ScalarProperty Name="nEmail" ColumnName="nEmail" />
+          <ScalarProperty Name="nPassword" ColumnName="nPassword" />
+          <ScalarProperty Name="nPasswordSalt" ColumnName="nPasswordSalt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomersAccts">
+      <EntityTypeMapping TypeName="ABCBankModel.CustomersAcct">
+        <MappingFragment StoreEntitySet="CustomersAcct">
+          <ScalarProperty Name="iAcNo" ColumnName="iAcNo" />
+          <ScalarProperty Name="vCusName" ColumnName="vCusName" />
+          <ScalarProperty Name="vCusSurName" ColumnName="vCusSurName" />
+          <ScalarProperty Name="cSex" ColumnName="cSex" />
+          <ScalarProperty Name="vAddress" ColumnName="vAddress" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="mBal" ColumnName="mBal" />
+          <ScalarProperty Name="staffid" ColumnName="staffid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deposits">
+      <EntityTypeMapping TypeName="ABCBankModel.Deposit">
+        <MappingFragment StoreEntitySet="Deposits">
+          <ScalarProperty Name="SlipNo" ColumnName="SlipNo" />
+          <ScalarProperty Name="iAcNo" ColumnName="iAcNo" />
+          <ScalarProperty Name="AmtDep" ColumnName="AmtDep" />
+          <ScalarProperty Name="Amtinwords" ColumnName="Amtinwords" />
+          <ScalarProperty Name="DateOfDep" ColumnName="DateOfDep" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffDetails">
+      <EntityTypeMapping TypeName="ABCBankModel.StaffDetail">
+        <MappingFragment StoreEntitySet="StaffDetails">
+          <ScalarProperty Name="staffId" ColumnName="staffId" />
+          <ScalarProperty Name="staffName" ColumnName="staffName" />
+          <ScalarProperty Name="staffLastName" ColumnName="staffLastName" />
+          <ScalarProperty Name="cPhoneNo" ColumnName="cPhoneNo" />
+          <ScalarProperty Name="iAge" ColumnName="iAge" />
+          <ScalarProperty Name="cSex" ColumnName="cSex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="ABCBankModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="TansId" ColumnName="TansId" />
+          <ScalarProperty Name="iacno" ColumnName="iacno" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="AmtInWords" ColumnName="AmtInWords" />
+          <ScalarProperty Name="TransType" ColumnName="TransType" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Withdrawls">
+      <EntityTypeMapping TypeName="ABCBankModel.Withdrawl">
+        <MappingFragment StoreEntitySet="Withdrawls">
+          <ScalarProperty Name="SlipNo" ColumnName="SlipNo" />
+          <ScalarProperty Name="iAcNo" ColumnName="iAcNo" />
+          <ScalarProperty Name="Amtwithdraw" ColumnName="Amtwithdraw" />
+          <ScalarProperty Name="Amtinwords" ColumnName="Amtinwords" />
+          <ScalarProperty Name="DateOfWith" ColumnName="DateOfWith" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

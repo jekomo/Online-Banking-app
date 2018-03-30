@@ -1,0 +1,124 @@
+﻿@model ABCBankApps.Models.Transaction
+
+@{
+    ViewBag.Title = "newTransaction";
+}
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+   
+<h4>Enter Transaction</h4>
+
+@using (Html.BeginForm("NewTransaction", "Home",FormMethod.Post, new { role="form"}))
+{
+    switch ((string)ViewBag.ValidResult)
+    {
+
+        case "Success":
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> Transaction Registration Sucessfull !</strong>
+                    
+                                </div>
+
+            break;
+            case "NoAcctNo":
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> @Html.ValidationSummary()</strong>
+                    
+                                </div>
+break;
+            case "Null":
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> @Html.ValidationSummary()</strong>
+                    
+                                </div>
+
+            break;
+
+    }
+   
+
+
+      <div class="col-md-6">
+<div class="form-group">
+    @Html.TextBoxFor(model=>model.iacno,
+    new 
+    {
+        placeholder ="* Enter account Number",
+        @class="form-control input-md",
+        required="required",
+        type="text",
+        pattern="\\d+"
+        
+    }
+    
+    )
+</div>
+          <div class="form-group">
+    @Html.DropDownListFor(model=>model.TransType,
+    new SelectList(new[] { "Deposit", "Withdrawals" }),
+    "*enter transaction type",
+    new { 
+       @class="form-control input-md",
+       required="required"
+    }
+    
+    )
+</div>
+              <div class="form-group">
+        
+            @Html.TextAreaFor(model => model.AmtInWords,
+            new{
+               placeholder="* Amount in words",
+                @class ="form-control input-md",
+                required="required",
+                type="number",   
+                
+            }
+            )
+        </div>
+       <div class="form-group">
+        
+            @Html.TextBoxFor(model => model.amount,
+            new{
+               placeholder="* 0.00",
+                @class ="form-control input-md",
+                required="required",
+                type="text",
+                pattern="^(((\\d{1,3}(,\\d{3})*)|(\\d+))(.\\d+)?$"
+                
+            }
+            )
+        </div>
+        
+   @*       <div class="form-group">
+        
+            @Html.TextBoxFor(model => model.staffid,
+            new{
+               placeholder="* Enter Account Offier Id",
+                @class ="form-control input-md",
+                required="required",
+                type="text",   
+                
+            }
+            )
+        </div>*@
+          <button class="btn btn-lg btn-theme" type="submit">Enter</button>
+     <button class="btn btn-lg btn-theme" type="reset">Reset</button>
+            </div>
+}
+       
+        </div>
+
+    </div>
+        </div>
+</section>
+
+
+   
+
